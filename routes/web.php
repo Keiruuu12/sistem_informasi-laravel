@@ -7,6 +7,7 @@ use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\MatakuliahController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\PencarianController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,3 +45,7 @@ Route::post('/mahasiswas/ambil-matakuliah/{mahasiswa}', [MahasiswaController::cl
 Route::get('/matakuliahs/daftarkan-mahasiswa/{matakuliah}', [MatakuliahController::class, 'daftarkanMahasiswa'])->name('daftarkan-mahasiswa');
 
 Route::post('/matakuliahs/daftarkan-mahasiswa/{matakuliah}', [MatakuliahController::class, 'prosesDaftarkanMahasiswa'])->name('proses-daftarkan-mahasiswa');
+
+Route::get('/pencarian', [PencarianController::class, 'index']);
+
+Route::get('/pencarian/proses', [PencarianController::class, 'proses']);

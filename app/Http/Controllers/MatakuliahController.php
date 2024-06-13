@@ -152,4 +152,9 @@ class MatakuliahController extends Controller
         Alert::success('Berhasil', "Matakuliah $matakuliah->name berhasil di hapus");
         return redirect(route('matakuliahs.index'));
     }
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
 }

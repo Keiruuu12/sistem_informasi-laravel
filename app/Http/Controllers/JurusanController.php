@@ -110,4 +110,11 @@ class JurusanController extends Controller
         Alert::success('Berhasil', "Jurusan $jurusan->nama telah di hapus");
         return redirect(route('jurusans.index'));
     }
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except([
+            'index', 'jurusanDosen', 'jurusanMahasiswa'
+        ]);
+    }
 }

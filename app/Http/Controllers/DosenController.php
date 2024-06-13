@@ -92,4 +92,9 @@ class DosenController extends Controller
         Alert::success('Berhasil', "Data dosen $dosen->nama berhasil di hapus");
         return redirect(route('dosens.index'));
     }
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
 }

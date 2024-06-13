@@ -141,4 +141,9 @@ class MahasiswaController extends Controller
         Alert::success('Berhasil', "Data mahasiswa $mahasiswa->nama berhasil di hapus");
         return redirect(route('mahasiswas.index'));
     }
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
 }
