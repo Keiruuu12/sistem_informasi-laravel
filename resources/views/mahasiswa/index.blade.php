@@ -17,6 +17,9 @@
                 <th>NIM</th>
                 <th>Nama Mahasiswa</th>
                 <th>Jurusan Mahasiswa</th>
+                @auth
+                <th>Action</th>
+                @endauth
             </tr>
         </thead>
         <tbody>
@@ -30,6 +33,16 @@
                         </a>
                     </td>
                     <td>{{ $mahasiswa->jurusan->nama }}</td>
+                    @auth
+                    <td>
+                        <a href="{{ route('mahasiswas.edit', ['mahasiswa' => $mahasiswa->id]) }}" class="btn btn-secondary" title="Edit Mahasiswa">Edit</a>
+                        <form action="{{ route('mahasiswas.destroy', ['mahasiswa' => $mahasiswa]) }}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger shadow-none btn-hapus" title="Hapus Mahasiswa">Hapus</button>
+                        </form>
+                    </td>
+                    @endauth
                 </tr>
             @endforeach
         </tbody>

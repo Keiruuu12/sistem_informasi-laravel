@@ -19,6 +19,9 @@
                 <th>Dosen Pengajar</th>
                 <th>Jumlah SKS</th>
                 <th>Jurusan</th>
+                @auth
+                <th>Action</th>
+                @endauth
             </tr>
         </thead>
         <tbody>
@@ -38,6 +41,16 @@
                     </td>
                     <td>{{ $matakuliah->jumlah_sks }}</td>
                     <td>{{ $matakuliah->jurusan->nama }}</td>
+                    @auth
+                    <td>
+                        <a href="{{ route('matakuliahs.edit', ['matakuliah' => $matakuliah->id]) }}" class="btn btn-secondary" title="Edit Matakuliah">Edit</a>
+                        <form action="{{ route('matakuliahs.destroy', ['matakuliah' => $matakuliah->id]) }}" class="d-inline" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger shadow-none btn-hapus" title="Hapus Matakuliah">Hapus</button>
+                        </form>
+                    </td>
+                    @endauth
                 </tr>
             @endforeach
         </tbody>

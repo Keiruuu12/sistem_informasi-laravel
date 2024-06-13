@@ -107,17 +107,40 @@ class MatakuliahController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Matakuliah $matakuliah)
+    public function edit(Matakuliah $matakuliah): View
     {
-        //
+        $jurusans = Jurusan::orderBy('nama')->get();
+        $dosens = Dosen::orderBy('nama')->get();
+
+        return view('matakuliah.edit', [
+            'matakuliah' => $matakuliah,
+            'jurusans' => $jurusans,
+            'dosens' => $dosens,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Matakuliah $matakuliah)
+    public function update(Request $request, Matakuliah $matakuliah): RedirectResponse
     {
-        //
+        $validateData = $request->validate([
+            'kode' => 'required|alpha_num|size:5|unique:matakuliahs,kode,'.$matakuliah->id,
+            'nama' => 'required',
+            'dosen_id' => 'required|exists:App\Models\Dosen,id',
+            'jurusan_id' => 'required|exists:App\Models\Jurusan,id',
+            'jumlah_sks' => 'required|digits_between:1,6',
+        ]);
+
+        if ( ($matakuliah->mahasiswas()->count() > 0) AND ($matakuliah->jurusan_id != $request->jurusan_id) ){
+            Alert::error('Update gagal', "Jurusan tidak bisa diubah!");
+            return back()->withInput();
+        }
+
+        $matakuliah->update($validateData);
+        Alert::success('berhasil', "Data matakuliah $request->nama berhasil diperbaharui");
+        // return redirect($request->temp_url);
+        return redirect(route('matakuliahs.index'));
     }
 
     /**
@@ -125,6 +148,8 @@ class MatakuliahController extends Controller
      */
     public function destroy(Matakuliah $matakuliah)
     {
-        //
+        $matakuliah->delete();
+        Alert::success('Berhasil', "Matakuliah $matakuliah->name berhasil di hapus");
+        return redirect(route('matakuliahs.index'));
     }
 }

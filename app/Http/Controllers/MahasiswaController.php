@@ -101,9 +101,13 @@ class MahasiswaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Mahasiswa $mahasiswa)
+    public function edit(Mahasiswa $mahasiswa): View
     {
-        //
+        $jurusans = Jurusan::orderBy('nama')->get();
+        return view('mahasiswa.edit', [
+            'mahasiswa' => $mahasiswa,
+            'jurusans' => $jurusans,
+        ]);
     }
 
     /**
@@ -111,7 +115,21 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, Mahasiswa $mahasiswa)
     {
-        //
+        $validateData = $request->validate([
+            'nim' => 'required|alpha_num|size:8|unique:mahasiswas,nim,'.$mahasiswa->id,
+            'nama' => 'required',
+            'jurusan_id' => 'required|exists:App\Models\Jurusan,id',
+        ]);
+
+        if ( ($mahasiswa->matakuliahs()->count() > 0) AND $mahasiswa->jurusan_id != $request->jurusan_id ){
+            Alert::error('Update gagal', "jurusan tidak bisa diubah!");
+            return back()->withinput();
+        }
+
+        $mahasiswa->update($validateData);
+        Alert::success('Berhasil', "data mahasiswa $request->nama telah diperbaharui");
+        return redirect($request->temp_url);
+        // return redirect(route('mahasiswas.index'));
     }
 
     /**
@@ -119,6 +137,8 @@ class MahasiswaController extends Controller
      */
     public function destroy(Mahasiswa $mahasiswa)
     {
-        //
+        $mahasiswa->delete();
+        Alert::success('Berhasil', "Data mahasiswa $mahasiswa->nama berhasil di hapus");
+        return redirect(route('mahasiswas.index'));
     }
 }

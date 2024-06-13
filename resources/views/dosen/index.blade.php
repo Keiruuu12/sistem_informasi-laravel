@@ -36,7 +36,12 @@
                 <td>{{ $dosen->jurusan->nama }}</td>
                 @auth
                 <td>
-                    <a href="{{ route('dosens.edit', ['dosen' => $dosen->id]) }}" class="btn btn-primary" title="Edit Dosen">Edit</a>
+                    <a href="{{ route('dosens.edit', ['dosen' => $dosen->id]) }}" class="btn btn-secondary" title="Edit Dosen">Edit</a>
+                    <form action="{{ route('dosens.destroy', ['dosen' => $dosen->id]) }}" method="POST" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger shadow-none btn-hapus" title="Hapus Dosen">Hapus</button>
+                    </form>
                 </td>
                 @endauth
             </tr>

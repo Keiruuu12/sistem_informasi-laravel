@@ -26,21 +26,30 @@
 <div class="row mb-3">
     <label for="jurusan_id" class="col-md-3 col-form-label text-md-end">Jurusan</label>
     <div class="col-md-4">
-        <select name="jurusan_id" id="jurusan_id" class="form-select @error('jurusan_id') is-invalid @enderror">
-        @foreach ($jurusans as $jurusan)
-            @if ($jurusan->id == (old('jurusan_id') ?? $mahasiswa->jurusan_id ?? ''))
-                <option value="{{ $jurusan->id }}" selected>{{ $jurusan->nama }}</option>
-            @else
-                <option value="{{ $jurusan->id }}">{{ $jurusan->nama }}</option>
-            @endif
-        @endforeach
-        </select>
+        @if ( ($tombol == 'Update') AND ($mahasiswa->matakuliahs->count() > 0) )
+            <div class="col-md-9 d-flex align-items-center">
+                {{ $mahasiswa->jurusan->nama }}
+                <small><i>(tidak bisa di ubah karena sudah mengambil {{ $mahasiswa->matakuliahs->count() }} mata kuliah)</i></small>
+            </div>
 
-        @error('jurusan_id')
-            <span class="invalid-feedback">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
+            <input type="hidden" name="jurusan_id" id="jurusan_id" value="{{ $mahasiswa->jurusan_id }}">
+        @else
+            <select name="jurusan_id" id="jurusan_id" class="form-select @error('jurusan_id') is-invalid @enderror">
+            @foreach ($jurusans as $jurusan)
+                @if ($jurusan->id == (old('jurusan_id') ?? $mahasiswa->jurusan_id ?? ''))
+                    <option value="{{ $jurusan->id }}" selected>{{ $jurusan->nama }}</option>
+                @else
+                    <option value="{{ $jurusan->id }}">{{ $jurusan->nama }}</option>
+                @endif
+            @endforeach
+            </select>
+
+            @error('jurusan_id')
+                <span class="invalid-feedback">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        @endif
     </div>
 </div>
 
@@ -52,7 +61,7 @@
 @endisset
 
 <div class="row">
-    <div class="col-md-6 offset-md-3">
+    <div class="col-md-6 offset-md-3 mb-3">
         <button type="submit" class="btn btn-primary">{{ $tombol }}</button>
     </div>
 </div>

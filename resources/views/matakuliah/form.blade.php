@@ -25,22 +25,34 @@
 
 <div class="row mb-3">
     <label for="jurusan_id" class="col-md-3 col-form-label text-md-end">Jurusan</label>
-    <div class="col-md-4">
-        <select name="jurusan_id" id="jurusan_id" class="form-select @error('jurusan_id') is-invalid @enderror">
-            @foreach ($jurusans as $jurusan)
-                @if ($jurusan->id == (old('jurusan_id') ?? $mahasiswa->jurusan_id ?? ''))
-                <option value="{{ $jurusan->id }}" selected>{{ $jurusan->nama }}</option>
-                @else
-                <option value="{{ $jurusan->id }}">{{ $jurusan->nama }}</option>
-                @endif    
-            @endforeach
-        </select>
-        @error('jurusan_id')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-    </div>
+    @if ( ($tombol == 'Update') AND ($matakuliah->mahasiswas->count() > 0) )
+        <div class="col-md-9 d-flex align-items-center">
+            <div>
+                {{ $matakuliah->jurusan->nama }}
+                <small>
+                    <i>(tidak bisa di ubah karena sudah diambil {{ $matakuliah->mahasiswas->count() }} mahasiswa)</i>
+                </small>
+            </div>
+        </div>
+        <input type="hidden" name="jurusan_id" id="jurusan_id" value="{{ $matakuliah->jurusan_id }}">
+    @else
+        <div class="col-md-4">
+            <select name="jurusan_id" id="jurusan_id" class="form-select @error('jurusan_id') is-invalid @enderror">
+                @foreach ($jurusans as $jurusan)
+                    @if ($jurusan->id == (old('jurusan_id') ?? $mahasiswa->jurusan_id ?? ''))
+                    <option value="{{ $jurusan->id }}" selected>{{ $jurusan->nama }}</option>
+                    @else
+                    <option value="{{ $jurusan->id }}">{{ $jurusan->nama }}</option>
+                    @endif    
+                @endforeach
+            </select>
+            @error('jurusan_id')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+    @endif
 </div>
 
 <div class="row mb-3">

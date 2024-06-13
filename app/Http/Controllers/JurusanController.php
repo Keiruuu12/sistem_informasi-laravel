@@ -106,6 +106,8 @@ class JurusanController extends Controller
      */
     public function destroy(Jurusan $jurusan)
     {
-        //
+        $jurusan->delete();
+        Alert::success('Berhasil', "Jurusan $jurusan->nama telah di hapus");
+        return redirect(route('jurusans.index'));
     }
 }

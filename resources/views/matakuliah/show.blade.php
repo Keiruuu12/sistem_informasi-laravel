@@ -5,6 +5,16 @@
         <div class="pt-3">
             <h1 class="h2 text-center">Informasi Mata Kuliah</h1>
         </div>
+        @auth
+        <td>
+            <a href="{{ route('matakuliahs.edit', ['matakuliah' => $matakuliah->id]) }}" class="btn btn-secondary" title="Edit Matakuliah">Edit</a>
+            <form action="{{ route('matakuliahs.destroy', ['matakuliah' => $matakuliah->id]) }}" class="d-inline" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger shadow-none btn-hapus" title="Hapus Matakuliah">Hapus</button>
+            </form>
+        </td>
+        @endauth
         <hr>
         <ul>
             <li>Nama: <strong>{{ $matakuliah->nama }}</strong></li>
