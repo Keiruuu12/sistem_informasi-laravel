@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"/>
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -20,7 +22,7 @@
 
 <body>
 <!-- NAVBAR -->
-<nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white py-3">
+<nav id="main-navbar" class="navbar navbar-expand-lg mt-4">
     <div class="container pb-3">
         <a class="navbar-brand" href="{{ url('/') }}">
             <span class="d-none">Sistem Informasi Project</span>
@@ -90,87 +92,6 @@
     </div>
 </div>
 
-<!-- FOOTER -->
-<footer id="main-footer" class="text-white bg-dark py-4 mt-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 text-center text-md-start">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita sapiente et facere voluptates odio, amet, delectus quis nam illo esse nesciunt.
-                </p>
-            </div>
-            <div class="col-md-3 text-center">
-                <h5>Information</h5>
-                <ul class="list-unstyled">
-                    <li>
-                        <a href="{{ route('jurusans.index') }}" class="text-white">Jurusan</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('dosens.index') }}" class="text-white">Dosen</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('mahasiswas.index') }}" class="text-white"> Mahasiswa</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('matakuliahs.index') }}" class="text-white"> Mata Kuliah</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-md-3 text-center">
-                <h5>Our Services</h5>
-                <ul class="list-unstyled">
-                    @guest
-                        @if (Route::has('register'))
-                            <li>
-                                <a class="text-white" href="{{ route('register') }}">
-                                    {{ __('Register') }}
-                                </a>
-                            </li>
-                        @endif
-                    @endguest
-                    <li><a href="#" class="text-white">Help/Contact Us</a></li>
-                    <li><a href="#" class="text-white">Privacy Policy</a></li>
-                    <li><a href="#" class="text-white">Terms & Conditions</a></li>
-                </ul>
-            </div>
-            <div class="col-md-3 text-center text-md-start">
-                <h5>Hubungi Kami</h5>
-                <div class="text-nowrap"><i class="fas fa-envelope fa-fw mr-3">
-                    </i>Laravel@gmail.com
-                </div>
-                <div class="text-nowrap"><i class="fas fa-phone fa-fw mr-3">
-                    </i>12345678
-                </div>
-                <div class="text-nowrap"><i class="fas fa-globe fa-fw mr-3">
-                    </i> www.laravel.com
-                </div>
-            </div>
-        </div>
-        <div class="row mt-3 mt-md-0">
-            <div class="col-md-3 me-md-auto text-center text-md-start">
-                <small>&copy; laravel {{ date('Y') }}</small>
-            </div>
-            <div id="footer-icon" class="col-md-3 text-center text-md-start">
-                <div>
-                    <a href="#" class="text-white text-decoration-none me-2">
-                        <i class="fab fa-facebook fa-lg"></i>
-                    </a>
-                    <a href="#" class="text-white text-decoration-none me-2">
-                        <i class="fab fa-twitter fa-lg"></i>
-                    </a>
-                    <a href="#" class="text-white text-decoration-none me-2">
-                        <i class="fab fa-instagram fa-lg"></i>
-                    </a>
-                    <a href="#" class="text-white text-decoration-none me-2">
-                        <i class="fab fa-whatsapp fa-lg"></i>
-                    </a>
-                    <a href="#" class="text-white text-decoration-none me-2">
-                        <i class="fab fa-github fa-lg"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
     @include('sweetalert::alert')
 </body>
 

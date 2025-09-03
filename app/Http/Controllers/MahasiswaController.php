@@ -42,7 +42,7 @@ class MahasiswaController extends Controller
 
         $mahasiswa->matakuliahs()->sync($validateData['matakuliah'] ?? []);
 
-        Alert::success('berhasil', "Terdapat ".count($validateData['matakuliah'] ?? [])."mata kuliah yang diambil $mahasiswa->nama");
+        Alert::success('berhasil', "Terdapat ".count($validateData['matakuliah'] ?? [])." mata kuliah yang diambil $mahasiswa->nama");
 
         return redirect(route('mahasiswas.show', [
             'mahasiswa' => $mahasiswa->id

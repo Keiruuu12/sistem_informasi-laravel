@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+<div class="card shadow-lg p-3 mb-5 bg-body-tertiary rounded">
     <div class="pt-3">
         <h1 class="h2">Tambah Mata Kuliah</h1>
     </div>
@@ -8,4 +9,5 @@
     <form action="{{ route('matakuliahs.store') }}" method="POST">
         @include('matakuliah.form', ['tombol' => 'Tambah'])
     </form>
+</div>
 @endsection

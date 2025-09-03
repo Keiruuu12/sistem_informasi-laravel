@@ -1,3 +1,8 @@
+body{
+    background-color: #fafafa
+}
+
+
 /* Untuk mengatur lebar tabel di halaman pencarian */
 .w-auto td,
 .w-auto th {
@@ -21,12 +26,12 @@ tr:target {
 
 /* Style untuk navbar */
 #main-navbar .nav-link {
-    color: #212529;
+    color: #000000;
     text-transform: uppercase;
 }
 
 #main-navbar .nav-link:hover {
-    color: #9e7b1c;
+    color: #6b6b6b;
 }
 
 #main-navbar .container {
@@ -78,16 +83,16 @@ tr:target {
 .btn-info:focus,
 .btn-primary:focus,
 .btn-secondary:focus {
-    background-color: #1f3f7a;
-    border-color: #1f3f7a;
+    background-color: #00a7b7;
+    border-color: #00a7b7;
     color: white;
 }
 
 .btn-info:hover,
 .btn-primary:hover,
 .btn-secondary:hover {
-    background-color: #0a2351;
-    border-color: #0a2351;
+    background-color: #007c88;
+    border-color: #007c88;
     color: white;
 }
 
@@ -104,21 +109,21 @@ tr:target {
 }
 
 .btn-success {
-    background-color: #b99737;
-    border-color: #b99737;
+    background-color: #006eb2;
+    border-color: #006eb2;
 }
 
 .btn-success:hover {
-    background-color: #9e7b1c;
-    border-color: #9e7b1c;
+    background-color: #015b74;
+    border-color: #015b74;
 }
 
 .btn-success:focus {
-    box-shadow: 0 0 0 0.2rem rgba(185, 151, 55, 0.5) !important;
+    box-shadow: 0 0 0 0.2rem #015b74 !important;
 }
 
 .btn-success:active {
-    background-color: #b99737 !important;
+    background-color: 015b74 !important;
 }
 
 /* Menukar warna ketika di select */
@@ -127,10 +132,11 @@ tr:target {
     color: white;
 }
 
-/* Menghapus underscore link di tabel dan konten utama */
+/* Menghapus underscore dan menambahkan warna link di tabel dan konten utama */
 table td a,
 small a {
     text-decoration: none;
+    color: rgb(0, 146, 153);
 }
 
 /* Memperbesar padding sel tabel */

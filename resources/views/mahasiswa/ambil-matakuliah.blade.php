@@ -26,6 +26,7 @@
                 <div class="col-md-12">
                     @foreach ($matakuliahs as $matakuliah)
                     <div class="mb-2">
+
                         <input type="checkbox" name="matakuliah[]" id="matakuliah-{{ $matakuliah->id }}" value="{{ $matakuliah->id }}" class="form-check-input"
                         @if ( in_array($matakuliah->id, (old('matakuliah') ?? $matakuliahs_sudah_diambil ?? [])) ) checked                      
                         @endif

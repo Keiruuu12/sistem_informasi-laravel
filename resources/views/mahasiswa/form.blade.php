@@ -60,7 +60,7 @@
     <input type="hidden" name="temp_url" value="{{ old('temp_url') ?? url()->previous() }}">
 @endisset
 
-<div class="row">
+<div class="row mb-3">
     <div class="col-md-6 offset-md-3 mb-3">
         <button type="submit" class="btn btn-primary">{{ $tombol }}</button>
     </div>
